@@ -31,8 +31,8 @@ The basic design of the project is to provide two RESTful APIs to get and to upl
 5. modify the required environment variables in the `template.yml` file in the `FetchBackendProjectLambda` folder
 
 ### Project setup
-1. `cd` to the lambda folder (Reminder: Do not run mvn under the CodeScreen's folder)
-<br> `cd ~/<your-root>/CodeScreen_9hlefyhj/TransactionServiceLambda/`
+1. `cd` to the lambda folder (Reminder: Do not run mvn under the Fetch-Backend-Project's folder)
+<br> `cd ~/<your-root>/<project-name>/FetchBackendProjectLambda/`
 2. Modify the environment variables in the `service.yml` file
 <br> ![alt text](images/template_yml_example.png)
 3. Build the project
