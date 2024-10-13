@@ -47,7 +47,7 @@ The basic design of the project is to provide two RESTful APIs to get and to upl
 <br>![img.png](Images/start_docker_api.jpg)
 2. Test the API endpoint with using Postman
    1. `http://<your-local-ip>/receipts/process`
-      <br> ![img_4.png](Images/postman_POST.jpg)</br>
+      <br> ![Images/postman_POST.jpg](Images/postman_POST.jpg)</br>
       <br> ![img_4.png](Images/postman_POST_BODY.jpg)</br>
 
 After the PUT request return the id, you can put it into GET method
