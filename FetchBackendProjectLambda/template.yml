@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: A simple AWS Lambda application that handles transactions.
+
+Globals:
+  Function:
+    Timeout: 1000 # Time in seconds until the function times out.
+
+Resources:
+  CreateAwardedPointsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: org.example.handler.CreateProcessReceiptsHandler::handleRequest
+      Runtime: java11
+      CodeUri: ./target/FetchBackendProjectLambda-1.0.jar
+      MemorySize: 1024
+      Environment:
+        Variables:
+          LOCAL_MYSQL_HOST: "host.docker.internal"
+          LOCAL_MYSQL_USERNAME: "YOUR_USERNAME"
+          LOCAL_MYSQL_PASSWORD: "YOUR_PASSWORD"
+          LOCAL_MYSQL_DATABASE: "YOUR_DATABASE_NAME"
+          RUN_ENVIRONMENT: "local"
+      Events:
+        LoadApi:
+          Type: Api
+          Properties:
+            Path: /receipts/process
+            Method: post
+
+  GetAwardedPointsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: org.example.handler.GetAwardedPointsHandler::handleRequest
+      Runtime: java11
+      CodeUri: ./target/FetchBackendProjectLambda-1.0.jar
+      MemorySize: 1024
+      Environment:
+        Variables:
+          LOCAL_MYSQL_HOST: "host.docker.internal"
+          LOCAL_MYSQL_USERNAME: "YOUR_USERNAME"
+          LOCAL_MYSQL_PASSWORD: "YOUR_PASSWORD"
+          LOCAL_MYSQL_DATABASE: "YOUR_DATABASE_NAME"
+          RUN_ENVIRONMENT: "local"
+      Events:
+        AuthorizationApi:
+          Type: Api
+          Properties:
+            Path: /receipts/{id}/points
+            Method: get
